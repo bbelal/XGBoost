@@ -1,0 +1,24 @@
+# Predict housing prices using XGBoost
+![github-small](https://storage.googleapis.com/kaggle-competitions/kaggle/5407/media/housesbanner.png)
+
+This repo contains a notebook that uses XGBoost on a publicly available dataset on kaggle [1] to predict Predict housing prices.
+
+## Gradient Boosting
+
+**Gradient boosting** is a method that goes through cycles to iteratively add models into an ensemble.  
+
+It begins by initializing the ensemble with a single model, whose predictions can be pretty naive.  (Even if its predictions are wildly inaccurate, subsequent additions to the ensemble will address those errors.)
+
+Then, we start the cycle:
+- First, we use the current ensemble to generate predictions for each observation in the dataset.  To make a prediction, we add the predictions from all models in the ensemble.  
+- These predictions are used to calculate a loss function (like [mean squared error](https://en.wikipedia.org/wiki/Mean_squared_error), for instance).
+- Then, we use the loss function to fit a new model that will be added to the ensemble.  Specifically, we determine model parameters so that adding this new model to the ensemble will reduce the loss.  (*Side note: The "gradient" in "gradient boosting" refers to the fact that we'll use [gradient descent](https://en.wikipedia.org/wiki/Gradient_descent) on the loss function to determine the parameters in this new model.*)
+- Finally, we add the new model to ensemble, and ...
+- ... repeat!
+
+![tut6_boosting](https://i.imgur.com/MvCGENh.png)
+
+## Dataset
+With 79 explanatory variables describing (almost) every aspect of residential homes in Ames, Iowa, the challenge is to predict the final price of each home.
+
+[1] https://www.kaggle.com/c/home-data-for-ml-course
